@@ -23,12 +23,19 @@ public class User {
 
     @NotNull
     @Email
-    private String Email;
+    private String email;
 
     @OneToMany(mappedBy = "user")
     private List<Circus> circus;
 
     public User() {
+    }
+
+    public User(String name, String firstname, String email, String password) {
+        this.name = name;
+        this.firstname = firstname;
+        this.email = email;
+        this.password = password;
     }
 
     public Long getId() {
@@ -64,11 +71,11 @@ public class User {
     }
 
     public String getEmail() {
-        return Email;
+        return email;
     }
 
     public void setEmail(String email) {
-        Email = email;
+        this.email = email;
     }
 
     public List<Circus> getCircus() {
