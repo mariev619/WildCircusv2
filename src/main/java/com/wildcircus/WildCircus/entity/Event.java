@@ -5,7 +5,7 @@ import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
-public class Show {
+public class Event {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,7 +28,7 @@ public class Show {
     @JoinColumn(name = "id_circus")
     private Circus circus;
 
-    public Show() {
+    public Event() {
     }
 
     public Long getId() {

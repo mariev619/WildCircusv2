@@ -25,15 +25,7 @@ public class Circus {
     private String urlPicture;
 
     @OneToMany(mappedBy = "circus")
-    private List<Show> shows;
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
+    private List<Event> events;
 
     @ManyToOne
     @JoinColumn(name = "id_user")
@@ -82,11 +74,19 @@ public class Circus {
         this.urlPicture = urlPicture;
     }
 
-    public List<Show> getShows() {
-        return shows;
+    public List<Event> getEvents() {
+        return events;
     }
 
-    public void setShows(List<Show> shows) {
-        this.shows = shows;
+    public void setEvents(List<Event> events) {
+        this.events = events;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
