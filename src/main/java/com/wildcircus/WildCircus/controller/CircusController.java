@@ -41,4 +41,9 @@ public class CircusController {
         out.addAttribute("events", events);
         return "my-events";
     }
+
+    @GetMapping("/ajout-cirque")
+    public String addACircus() {
+        return "add-circus";
+    }
 }
