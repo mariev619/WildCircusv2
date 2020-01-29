@@ -2,8 +2,10 @@ package com.wildcircus.WildCircus.controller;
 
 import com.wildcircus.WildCircus.entity.Circus;
 import com.wildcircus.WildCircus.entity.Event;
+import com.wildcircus.WildCircus.entity.User;
 import com.wildcircus.WildCircus.repository.CircusRepository;
 import com.wildcircus.WildCircus.repository.EventRepository;
+import com.wildcircus.WildCircus.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,8 +13,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpSession;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -26,9 +30,20 @@ public class EventController {
     @Autowired
     private CircusRepository circusRepository;
 
+    @Autowired
+    private UserRepository userRepository;
+
     @GetMapping("/mes-shows")
-    public String showMyShows(Model out) {
-        List<Event> events = eventRepository.findAll();
+    public String showMyShows(Model out, HttpSession session) {
+        User user = userRepository.findById((Long) session.getAttribute("userId")).get();
+        List<Circus> circuses = circusRepository.findAllByUser(user);
+        List<Event> events = new ArrayList<>();
+
+        for (Circus circus : circuses) {
+            for (Event event : circus.getEvents()) {
+                events.add(event);
+            }
+        }
 
         out.addAttribute("events", events);
         return "my-events";
