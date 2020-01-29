@@ -30,10 +30,11 @@ public class Circus {
     public Circus() {
     }
 
-    public Circus (String name, String adress, int phone) {
+    public Circus (String name, String adress, int phone, User user) {
         this.name = name;
         this.adress = adress;
         this.phone = phone;
+        this.user = user;
     }
 
     public Long getId() {

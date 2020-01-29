@@ -11,24 +11,30 @@ public class Event {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
     private String title;
 
-    @NotNull
     private String comment;
 
-    @NotNull
     @Column(name = "url_picture")
     private String urlPicture;
 
-    @NotNull
     private Date date;
+
+    private int price;
 
     @ManyToOne
     @JoinColumn(name = "id_circus")
     private Circus circus;
 
     public Event() {
+    }
+
+    public Event(String title, String comment, Date date, int price, Circus circus) {
+        this.title = title;
+        this.comment = comment;
+        this.date = date;
+        this.price = price;
+        this.circus = circus;
     }
 
     public Long getId() {
@@ -77,5 +83,13 @@ public class Event {
 
     public void setCircus(Circus circus) {
         this.circus = circus;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
     }
 }

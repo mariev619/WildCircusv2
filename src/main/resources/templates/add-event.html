@@ -1,10 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+<div class="ui modal">
+<h2 class="ui header">Ajouter un show</h2>
+<form class="ui form" method="post" th:action="@{/ajout-show}">
+    <div class="field">
+        <label>Titre du show : </label>
+        <input type="text" name="title" placeholder="Titre" required>
+    </div>
+    <div class="field">
+        <label>Commentaire : </label>
+        <textarea name="comment" placeholder="Ecrivez vos commentaires sur le show" required></textarea>
+    </div>
+    <div class="field">
+        <label>Date : </label>
+        <div class="ui calendar" id="date">
+            <div class="ui input left icon">
+                <i class="calendar icon"></i>
+                <input type="text" name="dateString" required>
+            </div>
+        </div>
+    </div>
+    <div class="field">
+        <label>Heure : </label>
+        <div class="ui calendar" id="hour">
+            <div class="ui input left icon">
+                <i class="time icon"></i>
+                <input type="text" name="hour" required>
+            </div>
+        </div>
+    </div>
+    <div class="field">
+        <label>Price : </label>
+        <input type="number" name="price" placeholder="5" required>
+    </div>
+    <input hidden th:value="${circus.id}" th:id="${circus.id}" name="circusId">
+    <button class="ui button" type="submit">Ajouter</button>
+</form>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://cdn.rawgit.com/mdehoog/Semantic-UI/6e6d051d47b598ebab05857545f242caf2b4b48c/dist/semantic.min.js"></script>
+<script>
+    $('.ui.dropdown').dropdown();
+    $('#date').calendar({
+        type: 'date',
+    });
+    $('#hour').calendar({
+        type: 'time'
+    });
+</script>
