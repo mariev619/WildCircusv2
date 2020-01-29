@@ -28,25 +28,12 @@ public class CircusController {
     @Autowired
     private UserRepository userRepository;
 
-    @GetMapping("/")
-    public String index() {
-        return "visit";
-    }
-
     @GetMapping("/mes-cirques")
     public String showMyCircus(Model out) {
         List<Circus> circuses = circusRepository.findAll();
 
         out.addAttribute("circuses", circuses);
         return "my-circus";
-    }
-
-    @GetMapping("/mes-shows")
-    public String showMyShows(Model out) {
-        List<Event> events = eventRepository.findAll();
-
-        out.addAttribute("events", events);
-        return "my-events";
     }
 
     @GetMapping("/ajout-cirque")
