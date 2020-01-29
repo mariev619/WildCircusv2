@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpSession;
 import java.util.Date;
 import java.util.List;
 
@@ -29,8 +30,10 @@ public class CircusController {
     private UserRepository userRepository;
 
     @GetMapping("/mes-cirques")
-    public String showMyCircus(Model out) {
-        List<Circus> circuses = circusRepository.findAll();
+    public String showMyCircus(Model out, HttpSession session) {
+        User user = userRepository.findById((Long) session.getAttribute("userId")).get();
+
+        List<Circus> circuses = circusRepository.findAllByUser(user);
 
         out.addAttribute("circuses", circuses);
         return "my-circus";

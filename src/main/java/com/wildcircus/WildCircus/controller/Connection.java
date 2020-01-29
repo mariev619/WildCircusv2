@@ -71,11 +71,12 @@ public class Connection {
                 .hashString(pass + password, StandardCharsets.UTF_8)
                 .toString();
         Optional<User> optionalUser = userRepository.findByEmailAndPassword(email, encryptedPassword);
+        User user = optionalUser.get();
         if (!optionalUser.isPresent()) {
             redirectView.setUrl("/");
             return redirectView;
         }
-        session.setAttribute("user", session.getId());
+        session.setAttribute("userId", user.getId());
         redirectView.setUrl("/mes-cirques");
 
         return redirectView;
