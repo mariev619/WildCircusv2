@@ -24,29 +24,6 @@
         <div class="logo">Wild Circus</div>
     </div>
 </div>
-<h2 class="ui header">Mes Shows</h2>
-<div class="ui four column doubling stackable grid container">
-    <div class="column" th:each="event : ${events}">
-        <div class="ui card">
-            <div class="image">
-                <img th:src="@{/image/circus2.png}">
-            </div>
-            <div class="content">
-                <a class="header" th:text="${event.getTitle()}">Name</a>
-                <div class="description" th:text="${event.getDate()}">Date</div>
-                <div th:text="${event.getComment()}"></div>
-                <div th:text="${event.getCircus().getName()}"></div>
-                <div th:text="${event.getCircus().getAdress()}"></div>
-            </div>
-            <!-- <div class="extra content">
-                 <a>
-                     <i class="user icon"></i>
-                     22 Friends
-                 </a>
-             </div>-->
-        </div>
-    </div>
-</div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://cdn.rawgit.com/mdehoog/Semantic-UI/6e6d051d47b598ebab05857545f242caf2b4b48c/dist/semantic.min.js"></script>
 <script>
