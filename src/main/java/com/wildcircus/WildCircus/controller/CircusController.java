@@ -40,8 +40,8 @@ public class CircusController {
     }
 
     @GetMapping("/ajout-cirque")
-    public String addACircus(Model out) {
-        User user = userRepository.findById(1L).get();
+    public String addACircus(Model out, HttpSession session) {
+        User user = userRepository.findById((long) session.getAttribute("userId")).get();
 
         out.addAttribute("circus", new Circus());
         out.addAttribute("user", user);
@@ -52,9 +52,10 @@ public class CircusController {
     public String addACircusPost (@RequestParam String name,
                                   @RequestParam String address,
                                   @RequestParam int phone,
-                                  @RequestParam Long userId) {
+                                  HttpSession session) {
 
-        User user = userRepository.findById(userId).get();
+        User user = userRepository.findById((long) session.getAttribute("userId")).get();
+
         circusRepository.save(new Circus(name, address, phone, user));
         return "redirect:/mes-cirques";
     }
