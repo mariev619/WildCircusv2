@@ -25,20 +25,21 @@
     </div>
 </div>
 <h2 class="ui header">Ajouter un cirque</h2>
-<form class="ui form">
+<form class="ui form" method="post" th:action="@{/ajout-cirque}">
     <div class="field">
         <label>Nom du cirque : </label>
-        <input type="text" name="name" placeholder="Nom">
+        <input type="text" name="name" placeholder="Nom" required>
     </div>
     <div class="field">
         <label>Adresse du cirque : </label>
-        <input type="text" name="adress" placeholder="Adresse">
+        <input type="text" name="address" placeholder="Adresse" required>
     </div>
     <div class="field">
         <label>Téléphone du cirque : </label>
-        <input type="text" name="phone" placeholder="0611111111">
+        <input type="tel" name="phone" placeholder="0611111111" required>
     </div>
-    <button class="ui button" type="submit">Submit</button>
+    <input hidden th:field="${user.id}" th:value="${user.id}" name="userId">
+    <button class="ui button" type="submit">Ajouter</button>
 </form>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://cdn.rawgit.com/mdehoog/Semantic-UI/6e6d051d47b598ebab05857545f242caf2b4b48c/dist/semantic.min.js"></script>

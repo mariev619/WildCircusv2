@@ -11,16 +11,12 @@ public class Circus {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
     private String name;
 
-    @NotNull
     private String adress;
 
-    @NotNull
     private int phone;
 
-    @NotNull
     @Column(name = "url_picture")
     private String urlPicture;
 
@@ -32,6 +28,12 @@ public class Circus {
     private User user;
 
     public Circus() {
+    }
+
+    public Circus (String name, String adress, int phone) {
+        this.name = name;
+        this.adress = adress;
+        this.phone = phone;
     }
 
     public Long getId() {
