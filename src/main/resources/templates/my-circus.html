@@ -17,7 +17,7 @@
         <div class="menu">
             <div class="item">Mes cirques</div>
             <div class="item">Mes shows</div>
-            <div class="item">Déconnexion</div>
+            <a class="item" th:href="@{/deconnexion}">Déconnexion</a>
         </div>
     </div>
     <div class="menu & flexmenu">
@@ -35,12 +35,10 @@
                 <a class="header" th:text="${circus.getName()}">Name</a>
                 <div class="description" th:text="${circus.getAdress()}">Adress</div>
             </div>
-           <!-- <div class="extra content">
-                <a>
-                    <i class="user icon"></i>
-                    22 Friends
-                </a>
-            </div>-->
+            <input th:value="${circus.id}" th:id="${circus.id}" name="circusId">
+           <div class="extra content">
+                <a class="ui button" id="newEvent" onclick="reply_click(this.id)">Ajouter un show</a>
+            </div>
         </div>
     </div>
 </div>
@@ -48,6 +46,24 @@
 <script src="https://cdn.rawgit.com/mdehoog/Semantic-UI/6e6d051d47b598ebab05857545f242caf2b4b48c/dist/semantic.min.js"></script>
 <script>
     $('.ui.dropdown').dropdown();
+    var circusId = 0;
+
+    function reply_click(clicked_id) {
+        circusId = (clicked_id);
+    }
+
+    function createEvent() {
+        $('.ui.modal').remove();
+        $.get(
+            "[[@{/ajout-show}]]" + "?circusId=" + circusId,
+            function (htmlContent) {
+                $(document.body).append(htmlContent);
+                $('.ui.modal').modal('show');
+            }
+        );
+    }
+
+    $('#newEvent').click(createEvent);
 </script>
 </body>
 </html>

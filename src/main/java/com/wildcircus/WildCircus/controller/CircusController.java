@@ -46,15 +46,13 @@ public class CircusController {
     }
 
     @PostMapping("/ajout-cirque")
-    public String addACircusPost (@RequestParam String name, @RequestParam String address, @RequestParam int phone) {
+    public String addACircusPost (@RequestParam String name,
+                                  @RequestParam String address,
+                                  @RequestParam int phone,
+                                  @RequestParam Long userId) {
 
-        circusRepository.save(new Circus(name, address, phone));
+        User user = userRepository.findById(userId).get();
+        circusRepository.save(new Circus(name, address, phone, user));
         return "redirect:/mes-cirques";
     }
 }
-    /*Date date = null;
-        try {
-                date = new SimpleDateFormat("MMMM dd, yyyy h:mm a", Locale.FRANCE).parse(stringDate + " " + stringTime);
-                } catch (ParseException e) {
-                e.printStackTrace();
-                }*/

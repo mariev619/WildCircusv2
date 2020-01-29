@@ -1,10 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta name="robots" content="noindex, nofollow">
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>WildCircus</title>
+    <meta content="width=device-width, user-scalable=no" name="viewport">
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.9/semantic.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <!--    <link rel="icon" th:href="@{/img/x-logo-small.png}" />-->
 </head>
 <body>
-
+<div class="ui top attached menu">
+    <div class="ui dropdown icon item">
+        <i class="bars big icon"></i>
+        <div class="menu">
+            <div class="item">Mes cirques</div>
+            <div class="item">Mes shows</div>
+            <div class="item">Déconnexion</div>
+        </div>
+    </div>
+    <div class="menu & flexmenu">
+        <div class="logo">Wild Circus</div>
+    </div>
+</div>
+<h2 class="ui header">S'inscrire</h2>
+<form class="ui form content" method="post" th:action="@{/inscription}" th:object="${user}">
+    <div class="ui placeholder middle content aligned">
+        <div class="ui three column centered very relaxed stackable grid">
+            <div class="column relaxed">
+                <div class="field">
+                    <label for="lastName">Nom</label>
+                    <input th:field="*{name}" type="text" placeholder="" id="lastName" required>
+                </div>
+                <div class="field">
+                    <label for="firstName">Prénom</label>
+                    <input th:field="*{firstname}" type="text" placeholder="" id="firstName" required>
+                </div>
+                <div class="field">
+                    <label for="email">Email</label>
+                    <input th:field="*{email}" type="email" placeholder="" id="email" required>
+                </div>
+                <div class="field">
+                    <label for="password">Mot de passe</label>
+                    <input th:field="*{password}" type="password" placeholder="*****" id="password" required>
+                </div>
+            </div>
+        </div>
+    <button class="ui button" type="submit">Ajouter</button>
+    </div>
+</form>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://cdn.rawgit.com/mdehoog/Semantic-UI/6e6d051d47b598ebab05857545f242caf2b4b48c/dist/semantic.min.js"></script>
+<script>
+    $('.ui.dropdown').dropdown();
+</script>
 </body>
 </html>
