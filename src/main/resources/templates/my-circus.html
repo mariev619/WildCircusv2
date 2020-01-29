@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="robots" content="noindex, nofollow">
+    <meta charset="UTF-8">
+    <title>WildCircus</title>
+    <meta content="width=device-width, user-scalable=no" name="viewport">
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.9/semantic.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+<!--    <link rel="icon" th:href="@{/img/x-logo-small.png}" />-->
+</head>
+<body>
+<div class="ui top attached menu">
+    <div class="ui dropdown icon item">
+        <i class="bars big icon"></i>
+        <div class="menu">
+            <div class="item">Mes cirques</div>
+            <div class="item">Mes shows</div>
+            <div class="item">Déconnexion</div>
+        </div>
+    </div>
+    <div class="menu & flexmenu">
+        <div class="logo">Wild Circus</div>
+    </div>
+</div>
+<h2 class="ui header">Mes Cirques</h2>
+<div class="ui four column doubling stackable grid container">
+    <div class="column" th:each="circus : ${circuses}">
+        <div class="ui card">
+            <div class="image">
+                <img th:src="@{/image/circus1.png}">
+            </div>
+            <div class="content">
+                <a class="header" th:text="${circus.getName()}">Name</a>
+                <div class="description" th:text="${circus.getAdress()}">Adress</div>
+            </div>
+           <!-- <div class="extra content">
+                <a>
+                    <i class="user icon"></i>
+                    22 Friends
+                </a>
+            </div>-->
+        </div>
+    </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://cdn.rawgit.com/mdehoog/Semantic-UI/6e6d051d47b598ebab05857545f242caf2b4b48c/dist/semantic.min.js"></script>
+<script>
+    $('.ui.dropdown').dropdown();
+</script>
+</body>
+</html>
