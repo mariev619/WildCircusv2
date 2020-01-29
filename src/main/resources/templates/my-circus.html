@@ -35,9 +35,10 @@
                 <a class="header" th:text="${circus.getName()}">Name</a>
                 <div class="description" th:text="${circus.getAdress()}">Adress</div>
             </div>
-            <input th:value="${circus.id}" th:id="${circus.id}" name="circusId">
+            <input hidden th:value="${circus.id}" th:id="${circus.id}" name="circusId">
            <div class="extra content">
-                <a class="ui button" id="newEvent" onclick="reply_click(this.id)">Ajouter un show</a>
+               <input hidden th:value="${circus.id}" th:id="${circus.id}" name="circusId">
+               <a class="ui button" th:href="@{/ajout-show(circusId=${circus.id})}" onclick="reply_click(this.id)">Ajouter un show</a>
             </div>
         </div>
     </div>
@@ -46,7 +47,7 @@
 <script src="https://cdn.rawgit.com/mdehoog/Semantic-UI/6e6d051d47b598ebab05857545f242caf2b4b48c/dist/semantic.min.js"></script>
 <script>
     $('.ui.dropdown').dropdown();
-    var circusId = 0;
+    /*var circusId = 0;
 
     function reply_click(clicked_id) {
         circusId = (clicked_id);
@@ -63,7 +64,7 @@
         );
     }
 
-    $('#newEvent').click(createEvent);
+    $('#newEvent').click(createEvent);*/
 </script>
 </body>
 </html>
