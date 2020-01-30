@@ -69,7 +69,8 @@ public class EventController {
                                @RequestParam String dateString,
                                @RequestParam String hour,
                                @RequestParam int price,
-                               @RequestParam Long circusId) {
+                               @RequestParam Long circusId,
+                               @RequestParam String urlPicture) {
 
         Date date = null;
         try {
@@ -78,7 +79,7 @@ public class EventController {
             e.printStackTrace();
         }
         Circus circus = circusRepository.findById(circusId).get();
-        eventRepository.save(new Event(title, comment, date, price, circus));
+        eventRepository.save(new Event(title, comment, date, price, circus, urlPicture));
         return "redirect:/mes-shows";
     }
 
@@ -102,7 +103,9 @@ public class EventController {
                                  @RequestParam String dateString,
                                  @RequestParam String hour,
                                  @RequestParam int price,
-                                 @RequestParam Long circusId) {
+                                 @RequestParam Long circusId,
+                                 @RequestParam String urlPicture,
+                                 @RequestParam Long eventId) {
 
         Date date = null;
         try {
@@ -111,7 +114,13 @@ public class EventController {
             e.printStackTrace();
         }
         Circus circus = circusRepository.findById(circusId).get();
-        eventRepository.save(new Event(title, comment, date, price, circus));
+        Event event = eventRepository.findById(eventId).get();
+        event.setTitle(title);
+        event.setComment(comment);
+        event.setDate(date);
+        event.setPrice(price);
+        event.setUrlPicture(urlPicture);
+        eventRepository.save(event);
         return "redirect:/mes-shows";
     }
 

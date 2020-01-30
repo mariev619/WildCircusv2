@@ -69,6 +69,11 @@
                     <label>Price : </label>
                     <input name="price" placeholder="5" required type="number">
                 </div>
+                <div class="field">
+                    <label>Url de votre image : </label>
+                    <input name="urlPicture" placeholder="https://shot-cropped-1551658050417.png" required type="text">
+                </div>
+                <input hidden name="eventId" th:id="${event.id}" th:value="${event.id}">
                 <input hidden name="circusId" th:id="${circus.id}" th:value="${circus.id}">
                 <button class="ui orange button" type="submit">Modifier</button>
             </div>
