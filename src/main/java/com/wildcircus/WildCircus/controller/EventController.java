@@ -19,7 +19,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 @Controller
 public class EventController {
@@ -129,7 +128,6 @@ public class EventController {
         if (session.getAttribute("userId") == null) {
             return "redirect:/";
         }
-
         eventRepository.deleteById(eventId);
         return "redirect:/mes-shows";
     }
