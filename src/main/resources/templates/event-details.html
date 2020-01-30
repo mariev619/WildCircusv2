@@ -43,7 +43,7 @@
         </div>
     </div>
     <div class="column">
-        <div th:text="${event.getDate()}">Date</div>
+        <div th:text="${event.getFormattedDate()}">Date</div>
         <div th:text="${event.getComment()}"></div>
         <div th:text="|Nom du cirque : ${event.getCircus().getName()}|"></div>
         <div th:text="|Adresse : ${event.getCircus().getAdress()}|"></div>

@@ -48,20 +48,20 @@
                     <textarea name="comment" placeholder="Ecrivez vos commentaires sur le show" required></textarea>
                 </div>
                 <div class="field">
-                    <label>Date : </label>
-                    <div class="ui calendar" id="date">
+                    <label for="date">Date : </label>
+                    <div class="ui calendar" id="datePick">
                         <div class="ui input left icon">
                             <i class="calendar icon"></i>
-                            <input name="dateString" required type="text">
+                            <input name="dateString" required type="text" id="date">
                         </div>
                     </div>
                 </div>
                 <div class="field">
-                    <label>Heure : </label>
-                    <div class="ui calendar" id="hour">
+                    <label for="hour">Heure : </label>
+                    <div class="ui calendar" id="hourPick">
                         <div class="ui input left icon">
                             <i class="time icon"></i>
-                            <input name="hour" required type="text">
+                            <input name="hour" required type="text" id="hour">
                         </div>
                     </div>
                 </div>
@@ -89,10 +89,10 @@
 <script src="https://cdn.rawgit.com/mdehoog/Semantic-UI/6e6d051d47b598ebab05857545f242caf2b4b48c/dist/semantic.min.js"></script>
 <script>
     $('.ui.dropdown').dropdown();
-    $('#date').calendar({
+    $('#datePick').calendar({
         type: 'date',
     });
-    $('#hour').calendar({
+    $('#hourPick').calendar({
         type: 'time'
     });
 </script>

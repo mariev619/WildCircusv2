@@ -2,6 +2,7 @@ package com.wildcircus.WildCircus.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Entity
@@ -35,6 +36,11 @@ public class Event {
         this.date = date;
         this.price = price;
         this.circus = circus;
+    }
+
+    public String getFormattedDate() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        return sdf.format(this.date);
     }
 
     public Long getId() {

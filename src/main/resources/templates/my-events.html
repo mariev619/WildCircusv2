@@ -43,7 +43,7 @@
             </div>
             <div class="content">
                 <a class="header" th:text="${event.getTitle()}">Name</a>
-                <div class="description" th:text="${event.getDate()}">Date</div>
+                <div class="description" th:text="${event.getFormattedDate()}">Date</div>
                 <div th:text="${event.getComment()}"></div>
                 <div th:text="${event.getCircus().getName()}"></div>
                 <div th:text="${event.getCircus().getAdress()}"></div>

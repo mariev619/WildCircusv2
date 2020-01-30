@@ -73,7 +73,7 @@ public class EventController {
 
         Date date = null;
         try {
-            date = new SimpleDateFormat("MMMM dd, yyyy h:mm a", Locale.FRANCE).parse(dateString + " " + hour);
+            date = new SimpleDateFormat("MMMM dd, yyyy h:mm a").parse(dateString + " " + hour);
         } catch (ParseException e) {
             e.printStackTrace();
         }

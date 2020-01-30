@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -34,7 +35,7 @@ public class MainController {
         List<Circus> circuses = circusRepository.findAll();
 
         out.addAttribute("circuses", circuses);
-        return "show-circus";
+        return "all-circus";
     }
 
     @GetMapping("/shows")
@@ -61,7 +62,7 @@ public class MainController {
     @GetMapping("/tous-shows")
     public String showAllEvents(Model out) {
 
-        List<Event> events = eventRepository.findAll();
+        List<Event> events = eventRepository.findAllByDateAfter(new Date());
 
         out.addAttribute("events", events);
         return "all-events";
