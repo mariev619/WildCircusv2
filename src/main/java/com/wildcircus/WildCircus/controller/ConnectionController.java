@@ -21,7 +21,7 @@ import com.google.common.hash.Hashing;
 import java.util.Optional;
 
 @Controller
-public class Connection {
+public class ConnectionController {
 
     @Autowired
     private UserRepository userRepository;

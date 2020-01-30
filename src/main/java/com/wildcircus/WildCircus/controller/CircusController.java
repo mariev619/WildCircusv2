@@ -31,6 +31,9 @@ public class CircusController {
 
     @GetMapping("/mes-cirques")
     public String showMyCircus(Model out, HttpSession session) {
+        if (session.getAttribute("userId") == null) {
+            return "redirect:/";
+        }
         User user = userRepository.findById((Long) session.getAttribute("userId")).get();
 
         List<Circus> circuses = circusRepository.findAllByUser(user);
@@ -41,6 +44,9 @@ public class CircusController {
 
     @GetMapping("/ajout-cirque")
     public String addACircus(Model out, HttpSession session) {
+        if (session.getAttribute("userId") == null) {
+            return "redirect:/";
+        }
         User user = userRepository.findById((long) session.getAttribute("userId")).get();
 
         out.addAttribute("circus", new Circus());
@@ -53,7 +59,9 @@ public class CircusController {
                                   @RequestParam String address,
                                   @RequestParam int phone,
                                   HttpSession session) {
-
+        if (session.getAttribute("userId") == null) {
+            return "redirect:/";
+        }
         User user = userRepository.findById((long) session.getAttribute("userId")).get();
 
         circusRepository.save(new Circus(name, address, phone, user));

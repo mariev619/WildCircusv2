@@ -35,6 +35,9 @@ public class EventController {
 
     @GetMapping("/mes-shows")
     public String showMyShows(Model out, HttpSession session) {
+        if (session.getAttribute("userId") == null) {
+            return "redirect:/";
+        }
         User user = userRepository.findById((Long) session.getAttribute("userId")).get();
         List<Circus> circuses = circusRepository.findAllByUser(user);
         List<Event> events = new ArrayList<>();
@@ -50,8 +53,10 @@ public class EventController {
     }
 
     @GetMapping("ajout-show")
-    public String addEvent(Model out, @RequestParam Long circusId) {
-
+    public String addEvent(Model out, @RequestParam Long circusId, HttpSession session) {
+        if (session.getAttribute("userId") == null) {
+            return "redirect:/";
+        }
         Circus circus = circusRepository.findById(circusId).get();
         out.addAttribute("circus", circus);
         out.addAttribute("event", new Event());
