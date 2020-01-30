@@ -20,3 +20,31 @@ h2 {
 .my-footer {
     color: #F8F8F8;
 }
+
+.index-p {
+    text-align: center;
+}
+
+header a {
+    color: #1E1919;
+}
+
+header a:hover {
+    color: #1E1919;
+}
+
+.logo {
+    font-size: 18px;
+}
+
+form a {
+    color: #1E1919;
+}
+
+form a:hover {
+    color: #1E1919;
+}
+
+.button {
+    color: #F8814C;
+}

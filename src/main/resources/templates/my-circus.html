@@ -26,7 +26,7 @@
         <div class="ui menu vertical segment">
             <div class="ui center aligned container">
                 <div class="ui horizontal small divided link list">
-                    <a th:href="@{/}">Wild Circus</a>
+                    <a class="logo" th:href="@{/}">Wild<br>Circus</a>
                 </div>
             </div>
         </div>
@@ -34,7 +34,14 @@
     <div class="item">
     </div>
 </header>
-<h2 class="ui header">Mes Cirques</h2>
+<div class="ui horizontal list center aligned">
+    <div class="item">
+        <h2 class="ui header">Mes Cirques</h2>
+    </div>
+    <div class="item">
+        <a class="ui button orange" th:href="@{/ajout-cirque}">Ajouter un cirque</a>
+    </div>
+</div>
 <div class="ui four column doubling stackable grid container">
     <div class="column" th:each="circus : ${circuses}">
         <div class="ui card">

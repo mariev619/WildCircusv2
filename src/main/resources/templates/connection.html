@@ -27,7 +27,7 @@
         <div class="ui menu vertical segment">
             <div class="ui center aligned container">
                 <div class="ui horizontal small divided link list">
-                    <a th:href="@{/}">Wild Circus</a>
+                    <a class="logo" th:href="@{/}">Wild<br>Circus</a>
                 </div>
             </div>
         </div>
@@ -37,17 +37,24 @@
 </header>
 <h2 class="ui header">Se connecter</h2>
 <form class="ui form" method="post" th:action="@{/connexion}">
-    <div class="field">
-        <label>Email : </label>
-        <input type="text" name="email" placeholder="marie@gmail.com" required>
+    <div class="ui placeholder middle content aligned">
+        <div class="ui three column centered very relaxed stackable grid">
+            <div class="column relaxed">
+                <div class="field">
+                    <label>Email : </label>
+                    <input type="text" name="email" placeholder="marie@gmail.com" required>
+                </div>
+                <div class="field">
+                    <label>Mot de passe : </label>
+                    <input type="password" name="password" placeholder="*****" required>
+                </div>
+                <button class="ui orange button" type="submit">Se connecter</button>
+                <br>
+                <a th:href="@{/inscription}">S'inscrire</a>
+            </div>
+        </div>
     </div>
-    <div class="field">
-        <label>Mot de passe : </label>
-        <input type="password" name="password" placeholder="*****" required>
-    </div>
-    <button class="ui button" type="submit">Se connecter</button>
 </form>
-<a th:href="@{/inscription}">S'inscrire</a>
 <footer class="ui inverted vertical footer segment">
     <div class="ui container">
         <div class="ui centered one column stackable grid">

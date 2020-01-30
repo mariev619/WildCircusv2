@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta name="robots" content="noindex, nofollow">
+    <meta content="noindex, nofollow" name="robots">
     <meta charset="UTF-8">
     <title>WildCircus</title>
     <meta content="width=device-width, user-scalable=no" name="viewport">
@@ -26,7 +26,7 @@
         <div class="ui menu vertical segment">
             <div class="ui center aligned container">
                 <div class="ui horizontal small divided link list">
-                    <a th:href="@{/}">Wild Circus</a>
+                    <a class="logo" th:href="@{/}">Wild<br>Circus</a>
                 </div>
             </div>
         </div>
@@ -36,44 +36,51 @@
 </header>
 <h2 class="ui header">Ajouter un show</h2>
 <form class="ui form" method="post" th:action="@{/ajout-show}">
-    <div class="field">
-        <label>Titre du show : </label>
-        <input type="text" name="title" placeholder="Titre" required>
-    </div>
-    <div class="field">
-        <label>Commentaire : </label>
-        <textarea name="comment" placeholder="Ecrivez vos commentaires sur le show" required></textarea>
-    </div>
-    <div class="field">
-        <label>Date : </label>
-        <div class="ui calendar" id="date">
-            <div class="ui input left icon">
-                <i class="calendar icon"></i>
-                <input type="text" name="dateString" required>
+    <div class="ui placeholder middle content aligned">
+        <div class="ui three column centered very relaxed stackable grid">
+            <div class="column relaxed">
+                <div class="field">
+                    <label>Titre du show : </label>
+                    <input name="title" placeholder="Titre" required type="text">
+                </div>
+                <div class="field">
+                    <label>Commentaire : </label>
+                    <textarea name="comment" placeholder="Ecrivez vos commentaires sur le show" required></textarea>
+                </div>
+                <div class="field">
+                    <label>Date : </label>
+                    <div class="ui calendar" id="date">
+                        <div class="ui input left icon">
+                            <i class="calendar icon"></i>
+                            <input name="dateString" required type="text">
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <label>Heure : </label>
+                    <div class="ui calendar" id="hour">
+                        <div class="ui input left icon">
+                            <i class="time icon"></i>
+                            <input name="hour" required type="text">
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <label>Price : </label>
+                    <input name="price" placeholder="5" required type="number">
+                </div>
+                <input hidden name="circusId" th:id="${circus.id}" th:value="${circus.id}">
+                <button class="ui orange button" type="submit">Ajouter</button>
             </div>
         </div>
     </div>
-    <div class="field">
-        <label>Heure : </label>
-        <div class="ui calendar" id="hour">
-            <div class="ui input left icon">
-                <i class="time icon"></i>
-                <input type="text" name="hour" required>
-            </div>
-        </div>
-    </div>
-    <div class="field">
-        <label>Price : </label>
-        <input type="number" name="price" placeholder="5" required>
-    </div>
-    <input hidden th:value="${circus.id}" th:id="${circus.id}" name="circusId">
-    <button class="ui button" type="submit">Ajouter</button>
 </form>
 <footer class="ui inverted vertical footer segment">
     <div class="ui container">
         <div class="ui centered one column stackable grid">
             <div class="middle aligned column center">
-                <a class="my-footer" th:href="@{https://www.linkedin.com/in/marie-vendran/}" target="_blank">Marie Vendran</a>
+                <a class="my-footer" target="_blank" th:href="@{https://www.linkedin.com/in/marie-vendran/}">Marie
+                    Vendran</a>
             </div>
         </div>
     </div>

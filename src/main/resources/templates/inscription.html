@@ -27,7 +27,7 @@
         <div class="ui menu vertical segment">
             <div class="ui center aligned container">
                 <div class="ui horizontal small divided link list">
-                    <a th:href="@{/}">Wild Circus</a>
+                    <a class="logo" th:href="@{/}">Wild<br>Circus</a>
                 </div>
             </div>
         </div>
@@ -56,12 +56,13 @@
                     <label for="password">Mot de passe</label>
                     <input th:field="*{password}" type="password" placeholder="*****" id="password" required>
                 </div>
+                <button class="ui orange button" type="submit">S'inscrire</button>
+                <br>
+                <a th:href="@{/connexion}">Se connecter</a>
             </div>
         </div>
-    <button class="ui button" type="submit">S'inscrire</button>
     </div>
 </form>
-<a th:href="@{/connexion}">Se connecter</a>
 <footer class="ui inverted vertical footer segment">
     <div class="ui container">
         <div class="ui centered one column stackable grid">
