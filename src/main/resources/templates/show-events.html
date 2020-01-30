@@ -48,6 +48,7 @@
                 <div th:text="${event.getComment()}"></div>
                 <div th:text="${event.getCircus().getName()}"></div>
                 <div th:text="${event.getCircus().getAdress()}"></div>
+                <a class="ui button" th:href="@{/details-show(eventId=${event.id})}">Voir les détails</a>
             </div>
         </div>
     </div>

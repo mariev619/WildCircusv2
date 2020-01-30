@@ -66,4 +66,13 @@ public class MainController {
         out.addAttribute("events", events);
         return "all-events";
     }
+
+    @GetMapping("/details-show")
+    public String showDetailsEvent(Model out, @RequestParam Long eventId) {
+
+        Event event = eventRepository.findById(eventId).get();
+
+        out.addAttribute("event", event);
+        return "event-details";
+    }
 }
