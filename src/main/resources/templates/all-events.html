@@ -43,7 +43,7 @@
                 <img th:src="@{/image/circus1.png}">
             </div>
             <div class="content">
-                <a class="header" th:text="${event.getTitle()}">Name</a>
+                <div class="header" th:text="${event.getTitle()}">Name</div>
                 <div class="description" th:text="${event.getDate()}">Date</div>
                 <div th:text="${event.getComment()}"></div>
                 <div th:text="${event.getCircus().getName()}"></div>

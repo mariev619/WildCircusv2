@@ -35,21 +35,19 @@
     <div class="item">
     </div>
 </header>
-<h2 class="ui header">Les Cirques</h2>
-<div class="ui one column doubling stackable grid container">
+<h2 class="ui header" th:text="${event.getTitle()}">Event name</h2>
+<div class="ui two column stackable grid container">
     <div class="column">
-        <div class="ui card">
-            <div class="image">
-                <img th:src="@{/image/circus1.png}">
-            </div>
-            <div class="content">
-                <a class="header" th:text="${event.getTitle()}">Name</a>
-                <div class="description" th:text="${event.getDate()}">Date</div>
-                <div th:text="${event.getComment()}"></div>
-                <div th:text="${event.getCircus().getName()}"></div>
-                <div th:text="${event.getCircus().getAdress()}"></div>
-            </div>
+        <div class="ui centeredimage">
+            <img th:src="@{/image/circus1.png}">
         </div>
+    </div>
+    <div class="column">
+        <div th:text="${event.getDate()}">Date</div>
+        <div th:text="${event.getComment()}"></div>
+        <div th:text="|Nom du cirque : ${event.getCircus().getName()}|"></div>
+        <div th:text="|Adresse : ${event.getCircus().getAdress()}|"></div>
+        <div th:text="|Prix : ${event.getPrice()}€|"></div>
     </div>
 </div>
 <footer class="ui inverted vertical footer segment">
