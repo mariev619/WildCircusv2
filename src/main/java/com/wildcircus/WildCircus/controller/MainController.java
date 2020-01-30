@@ -43,13 +43,15 @@ public class MainController {
 
         List<Event> events = new ArrayList<>();
         List<Circus> circuses = circusRepository.findAll();
-        List<List<Event>> eventss = new ArrayList<>();
+        List<List<Event>> eventsList = new ArrayList<>();
         for (Circus circus : circuses) {
             if (circus.getId().equals(circusId)) {
-                eventss.add(circus.getEvents());
-                for (List<Event> event : eventss) {
-                    for (Event event1 : event) {
-                        events.add(event1);
+                eventsList.add(circus.getEvents());
+                for (List<Event> eventList : eventsList) {
+                    for (Event event : eventList) {
+                        if (event.getDate().after(new Date())) {
+                            events.add(event);
+                        }
                     }
                 }
             }

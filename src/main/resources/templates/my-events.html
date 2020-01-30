@@ -44,9 +44,9 @@
             <div class="content">
                 <a class="header" th:text="${event.getTitle()}">Name</a>
                 <div class="description" th:text="${event.getFormattedDate()}">Date</div>
-                <div th:text="${event.getComment()}"></div>
                 <div th:text="${event.getCircus().getName()}"></div>
                 <div th:text="${event.getCircus().getAdress()}"></div>
+                <a class="ui button" th:href="@{details-show(eventId=${event.id})}">Voir les détails</a>
             </div>
             <!-- <div class="extra content">
                  <a>
