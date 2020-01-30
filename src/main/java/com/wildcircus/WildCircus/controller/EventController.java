@@ -81,4 +81,47 @@ public class EventController {
         eventRepository.save(new Event(title, comment, date, price, circus));
         return "redirect:/mes-shows";
     }
+
+    @GetMapping("/modifier-show")
+    public String updateShow(Model out, @RequestParam Long eventId, @RequestParam Long circusId, HttpSession session) {
+        if (session.getAttribute("userId") == null) {
+            return "redirect:/";
+        }
+        Event event = eventRepository.findById(eventId).get();
+        Circus circus = circusRepository.findById(circusId).get();
+
+        out.addAttribute("circus", circus);
+        out.addAttribute("event", new Event());
+        out.addAttribute("event", event);
+        return "update-event";
+    }
+
+    @PostMapping("/modifier-show")
+    public String updateShowPost(@RequestParam String title,
+                                 @RequestParam String comment,
+                                 @RequestParam String dateString,
+                                 @RequestParam String hour,
+                                 @RequestParam int price,
+                                 @RequestParam Long circusId) {
+
+        Date date = null;
+        try {
+            date = new SimpleDateFormat("MMMM dd, yyyy h:mm a").parse(dateString + " " + hour);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        Circus circus = circusRepository.findById(circusId).get();
+        eventRepository.save(new Event(title, comment, date, price, circus));
+        return "redirect:/mes-shows";
+    }
+
+    @GetMapping("/supprimer-show")
+    public String deleteShow(@RequestParam Long eventId, HttpSession session) {
+        if (session.getAttribute("userId") == null) {
+            return "redirect:/";
+        }
+
+        eventRepository.deleteById(eventId);
+        return "redirect:/mes-shows";
+    }
 }

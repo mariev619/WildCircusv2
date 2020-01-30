@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta content="noindex, nofollow" name="robots">
+    <meta charset="UTF-8">
+    <title>WildCircus</title>
+    <meta content="width=device-width, user-scalable=no" name="viewport">
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.9/semantic.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <!--    <link rel="icon" th:href="@{/img/x-logo-small.png}" />-->
+</head>
+<body>
+<header class="ui top attached three item menu">
+    <div class="item">
+        <div class="ui dropdown icon item">
+            <i class="bars big icon"></i>
+            <div class="menu">
+                <a class="item" th:href="@{mes-cirques}">Mes cirques</a>
+                <a class="item" th:href="@{mes-shows}">Mes shows</a>
+                <a class="item" th:href="@{/deconnexion}">Déconnexion</a>
+            </div>
+        </div>
+    </div>
+    <div class="item">
+        <div class="ui menu vertical segment">
+            <div class="ui center aligned container">
+                <div class="ui horizontal small divided link list">
+                    <a class="logo" th:href="@{/}">Wild<br>Circus</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="item">
+    </div>
+</header>
+<h2 class="ui header" th:text="|Modifier ${event.getTitle()}|">Ajouter un show</h2>
+<form class="ui form" method="post" th:action="@{/modifier-show}">
+    <div class="ui placeholder middle content aligned">
+        <div class="ui three column centered very relaxed stackable grid">
+            <div class="column relaxed">
+                <div class="field">
+                    <label>Titre du show : </label>
+                    <input name="title" placeholder="Titre" required type="text">
+                </div>
+                <div class="field">
+                    <label>Commentaire : </label>
+                    <textarea name="comment" placeholder="Ecrivez vos commentaires sur le show" required></textarea>
+                </div>
+                <div class="field">
+                    <label for="date">Date : </label>
+                    <div class="ui calendar" id="datePick">
+                        <div class="ui input left icon">
+                            <i class="calendar icon"></i>
+                            <input name="dateString" required type="text" id="date">
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="hour">Heure : </label>
+                    <div class="ui calendar" id="hourPick">
+                        <div class="ui input left icon">
+                            <i class="time icon"></i>
+                            <input name="hour" required type="text" id="hour">
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <label>Price : </label>
+                    <input name="price" placeholder="5" required type="number">
+                </div>
+                <input hidden name="circusId" th:id="${circus.id}" th:value="${circus.id}">
+                <button class="ui orange button" type="submit">Modifier</button>
+            </div>
+        </div>
+    </div>
+</form>
+<footer class="ui inverted vertical footer segment">
+    <div class="ui container">
+        <div class="ui centered one column stackable grid">
+            <div class="middle aligned column center">
+                <a class="my-footer" target="_blank" th:href="@{https://www.linkedin.com/in/marie-vendran/}">Marie
+                    Vendran</a>
+            </div>
+        </div>
+    </div>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://cdn.rawgit.com/mdehoog/Semantic-UI/6e6d051d47b598ebab05857545f242caf2b4b48c/dist/semantic.min.js"></script>
+<script>
+    $('.ui.dropdown').dropdown();
+    $('#datePick').calendar({
+        type: 'date',
+    });
+    $('#hourPick').calendar({
+        type: 'time'
+    });
+</script>
+</body>
+</html>

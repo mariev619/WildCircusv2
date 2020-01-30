@@ -83,9 +83,12 @@ public class ConnectionController {
     }
 
     @GetMapping("/deconnexion")
-    public String deconnection(HttpServletRequest request) {
-        HttpSession session = request.getSession();
-        session.invalidate();
-        return "redirect:/";
+    public RedirectView deconnection(HttpSession session) {
+        session.removeAttribute("userId");
+        RedirectView redirectView = new RedirectView();
+        redirectView.setContextRelative(true);
+        redirectView.setUrl("/");
+        return redirectView;
+
     }
 }

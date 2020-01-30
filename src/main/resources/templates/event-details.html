@@ -50,6 +50,16 @@
         <div th:text="|Prix : ${event.getPrice()}€|"></div>
         <div th:text="|Contact : ${event.getCircus().getPhone()}|"></div>
     </div>
+    <div th:if="${user}">
+        <div class="ui two column stackable grid container header">
+            <div class="column">
+                <a th:href="@{/modifier-show(eventId=${event.id}, circusId=${event.circus.id})}" class="ui button orange">Modifier</a>
+            </div>
+            <div class="column">
+                <a th:href="@{/supprimer-show(eventId=${event.id}, circusId=${event.circus.id})}" class="ui button red">Supprimer</a>
+            </div>
+        </div>
+    </div>
 </div>
 <footer class="ui inverted vertical footer segment">
     <div class="ui container">

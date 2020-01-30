@@ -2,14 +2,17 @@ package com.wildcircus.WildCircus.controller;
 
 import com.wildcircus.WildCircus.entity.Circus;
 import com.wildcircus.WildCircus.entity.Event;
+import com.wildcircus.WildCircus.entity.User;
 import com.wildcircus.WildCircus.repository.CircusRepository;
 import com.wildcircus.WildCircus.repository.EventRepository;
+import com.wildcircus.WildCircus.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -22,6 +25,9 @@ public class MainController {
 
     @Autowired
     private EventRepository eventRepository;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @GetMapping("/")
     public String index() {
@@ -71,10 +77,15 @@ public class MainController {
     }
 
     @GetMapping("/details-show")
-    public String showDetailsEvent(Model out, @RequestParam Long eventId) {
+    public String showDetailsEvent(Model out, @RequestParam Long eventId, HttpSession session) {
 
         Event event = eventRepository.findById(eventId).get();
+        boolean isUser = false;
+        if (session.getAttribute("userId") != null) {
+            isUser = true;
+        }
 
+        out.addAttribute("user", isUser);
         out.addAttribute("event", event);
         return "event-details";
     }
