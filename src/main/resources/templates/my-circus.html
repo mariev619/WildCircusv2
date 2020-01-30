@@ -34,12 +34,15 @@
     <div class="item">
     </div>
 </header>
-<div class="ui horizontal list center aligned">
-    <div class="item">
-        <h2 class="ui header">Mes Cirques</h2>
-    </div>
-    <div class="item">
-        <a class="ui button orange" th:href="@{/ajout-cirque}">Ajouter un cirque</a>
+<div>
+    <div class="ui three column stackable grid container">
+        <div class="column"></div>
+        <div class="column">
+            <h2 class="ui center aligned header">Mes Cirques</h2>
+        </div>
+        <div class="column">
+            <a th:href="@{ajout-cirque}" class="ui button orange">Ajouter un cirque</a>
+        </div>
     </div>
 </div>
 <div class="ui four column doubling stackable grid container">
