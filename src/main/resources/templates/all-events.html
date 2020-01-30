@@ -25,32 +25,24 @@
         <div class="logo">Wild Circus</div>
     </div>
 </div>
-<h2 class="ui header">S'inscrire</h2>
-<form class="ui form content" method="post" th:action="@{/inscription}" th:object="${user}">
-    <div class="ui placeholder middle content aligned">
-        <div class="ui three column centered very relaxed stackable grid">
-            <div class="column relaxed">
-                <div class="field">
-                    <label for="lastName">Nom</label>
-                    <input th:field="*{name}" type="text" placeholder="" id="lastName" required>
-                </div>
-                <div class="field">
-                    <label for="firstName">Prénom</label>
-                    <input th:field="*{firstname}" type="text" placeholder="" id="firstName" required>
-                </div>
-                <div class="field">
-                    <label for="email">Email</label>
-                    <input th:field="*{email}" type="email" placeholder="" id="email" required>
-                </div>
-                <div class="field">
-                    <label for="password">Mot de passe</label>
-                    <input th:field="*{password}" type="password" placeholder="*****" id="password" required>
-                </div>
+<h2 class="ui header">Mes Cirques</h2>
+<div class="ui four column doubling stackable grid container">
+    <div class="column" th:each="event : ${events}">
+        <div class="ui card">
+            <div class="image">
+                <img th:src="@{/image/circus1.png}">
+            </div>
+            <div class="content">
+                <a class="header" th:text="${event.getTitle()}">Name</a>
+                <div class="description" th:text="${event.getDate()}">Date</div>
+                <div th:text="${event.getComment()}"></div>
+                <div th:text="${event.getCircus().getName()}"></div>
+                <div th:text="${event.getCircus().getAdress()}"></div>
             </div>
         </div>
-    <button class="ui button" type="submit">Ajouter</button>
+        </div>
     </div>
-</form>
+</div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://cdn.rawgit.com/mdehoog/Semantic-UI/6e6d051d47b598ebab05857545f242caf2b4b48c/dist/semantic.min.js"></script>
 <script>

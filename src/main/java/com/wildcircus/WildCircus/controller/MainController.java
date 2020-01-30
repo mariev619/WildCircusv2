@@ -57,4 +57,13 @@ public class MainController {
         out.addAttribute("events", events);
         return "show-events";
     }
+
+    @GetMapping("/tous-shows")
+    public String showAllEvents(Model out) {
+
+        List<Event> events = eventRepository.findAll();
+
+        out.addAttribute("events", events);
+        return "all-events";
+    }
 }

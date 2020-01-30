@@ -15,9 +15,10 @@
     <div class="ui dropdown icon item">
         <i class="bars big icon"></i>
         <div class="menu">
-            <div class="item">Mes cirques</div>
-            <div class="item">Mes shows</div>
-            <div class="item">Déconnexion</div>
+            <a class="item" th:href="@{/}">Accueil</a>
+            <a class="item" th:href="@{/cirques}">Les cirques</a>
+            <a class="item" th:href="@{/tous-shows}">Les shows</a>
+            <a class="item" th:href="@{/connexion}">Se connecter</a>
         </div>
     </div>
     <div class="menu & flexmenu">
@@ -35,6 +36,7 @@
         <input type="password" name="password" placeholder="*****" required>
     </div>
     <button class="ui button" type="submit">Ajouter</button>
+    <a class="ui button" th:href="@{/inscription}">S'inscrire</a>
 </form>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://cdn.rawgit.com/mdehoog/Semantic-UI/6e6d051d47b598ebab05857545f242caf2b4b48c/dist/semantic.min.js"></script>
