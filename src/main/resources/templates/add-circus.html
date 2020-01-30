@@ -51,6 +51,10 @@
                     <label>Téléphone du cirque : </label>
                     <input name="phone" placeholder="0611111111" required type="tel">
                 </div>
+                <div class="field">
+                    <label>Url de votre image : </label>
+                    <input name="urlPicture" placeholder="https://shot-cropped-1551658050417.png" type="text" required>
+                </div>
                 <input hidden name="userId" th:id="${user.id}" th:value="${user.id}">
                 <button class="ui orange button" type="submit">Ajouter</button>
             </div>

@@ -49,10 +49,10 @@
     <div class="column" th:each="circus : ${circuses}">
         <div class="ui card">
             <div class="image">
-                <img th:src="@{/image/circus1.png}">
+                <img th:src="${circus.getUrlPicture()}">
             </div>
             <div class="content">
-                <a class="header" th:text="${circus.getName()}">Name</a>
+                <div class="header" th:text="${circus.getName()}">Name</div>
                 <div class="description" th:text="${circus.getAdress()}">Adress</div>
             </div>
             <input hidden th:value="${circus.id}" th:id="${circus.id}" name="circusId">

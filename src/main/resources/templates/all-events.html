@@ -40,7 +40,7 @@
     <div class="column" th:each="event : ${events}">
         <div class="ui card">
             <div class="image">
-                <img th:src="@{/image/circus1.png}">
+                <img th:src="${event.getUrlPicture()}">
             </div>
             <div class="content">
                 <div class="header" th:text="${event.getTitle()}">Name</div>

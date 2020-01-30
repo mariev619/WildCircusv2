@@ -30,12 +30,13 @@ public class Event {
     public Event() {
     }
 
-    public Event(String title, String comment, Date date, int price, Circus circus) {
+    public Event(String title, String comment, Date date, int price, Circus circus, String urlPicture) {
         this.title = title;
         this.comment = comment;
         this.date = date;
         this.price = price;
         this.circus = circus;
+        this.urlPicture = urlPicture;
     }
 
     public String getFormattedDate() {

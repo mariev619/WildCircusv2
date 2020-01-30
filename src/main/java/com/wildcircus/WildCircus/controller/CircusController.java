@@ -58,13 +58,14 @@ public class CircusController {
     public String addACircusPost (@RequestParam String name,
                                   @RequestParam String address,
                                   @RequestParam int phone,
+                                  @RequestParam String urlPicture,
                                   HttpSession session) {
         if (session.getAttribute("userId") == null) {
             return "redirect:/";
         }
         User user = userRepository.findById((long) session.getAttribute("userId")).get();
 
-        circusRepository.save(new Circus(name, address, phone, user));
+        circusRepository.save(new Circus(name, address, phone, user, urlPicture));
         return "redirect:/mes-cirques";
     }
 }
