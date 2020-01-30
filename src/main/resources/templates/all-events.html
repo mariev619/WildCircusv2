@@ -44,11 +44,12 @@
             </div>
             <div class="content">
                 <div class="header" th:text="${event.getTitle()}">Name</div>
-                <div class="description" th:text="${event.getDate()}">Date</div>
-                <div th:text="${event.getComment()}"></div>
+                <div class="description" th:text="${event.getFormattedDate()}">Date</div>
                 <div th:text="${event.getCircus().getName()}"></div>
                 <div th:text="${event.getCircus().getAdress()}"></div>
-                <a class="ui button" th:href="@{/details-show(eventId=${event.id})}">Voir les détails</a>
+            </div>
+            <div class="extra content">
+                <a class="ui button orange" th:href="@{/details-show(eventId=${event.id})}">Voir les détails</a>
             </div>
         </div>
         </div>
