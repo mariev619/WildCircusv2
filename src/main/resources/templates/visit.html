@@ -11,7 +11,8 @@
     <!--    <link rel="icon" th:href="@{/img/x-logo-small.png}" />-->
 </head>
 <body>
-<div class="ui top attached menu">
+<header class="ui top attached three item menu">
+    <div class="item">
     <div class="ui dropdown icon item">
         <i class="bars big icon"></i>
         <div class="menu">
@@ -21,11 +22,28 @@
             <a class="item" th:href="@{/connexion}">Se connecter</a>
         </div>
     </div>
-    <div class="menu & flexmenu">
-        <div class="logo">Wild Circus</div>
     </div>
-</div>
-
+    <div class="item">
+    <div class="ui menu vertical segment">
+        <div class="ui center aligned container">
+            <div class="ui horizontal small divided link list">
+                <a th:href="@{/}">Wild Circus</a>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="item">
+    </div>
+</header>
+<footer class="ui inverted vertical footer segment">
+    <div class="ui container">
+        <div class="ui centered one column stackable grid">
+            <div class="middle aligned column center">
+                <a class="my-footer" th:href="@{https://www.linkedin.com/in/marie-vendran/}" target="_blank">Marie Vendran</a>
+            </div>
+        </div>
+    </div>
+</footer>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://cdn.rawgit.com/mdehoog/Semantic-UI/6e6d051d47b598ebab05857545f242caf2b4b48c/dist/semantic.min.js"></script>
 <script>

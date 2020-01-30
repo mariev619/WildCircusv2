@@ -1,4 +1,22 @@
-.logo {
-    font-size: 15px;
-    padding: 17px 0 0 35vw;
+.ui.vertical.menu {
+    box-shadow: none;
+}
+
+.ui.attached.menu:not(.tabular) {
+    border: none;
+}
+
+body {
+    color: #1E1919;
+    font-size: 16px;
+    background-color: #F8F8F8;
+}
+
+h2 {
+    font-size: 22px;
+    text-align: center;
+}
+
+.my-footer {
+    color: #F8F8F8;
 }
