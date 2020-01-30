@@ -38,7 +38,7 @@
 <h2 class="ui header" th:text="${event.getTitle()}">Event name</h2>
 <div class="ui two column stackable grid container">
     <div class="column">
-        <div class="ui centeredimage">
+        <div class="ui centered image">
             <img th:src="@{/image/circus1.png}">
         </div>
     </div>
@@ -48,6 +48,7 @@
         <div th:text="|Nom du cirque : ${event.getCircus().getName()}|"></div>
         <div th:text="|Adresse : ${event.getCircus().getAdress()}|"></div>
         <div th:text="|Prix : ${event.getPrice()}€|"></div>
+        <div th:text="|Contact : ${event.getCircus().getPhone()}|"></div>
     </div>
 </div>
 <footer class="ui inverted vertical footer segment">
