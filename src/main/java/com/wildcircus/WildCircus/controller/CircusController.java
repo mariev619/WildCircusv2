@@ -68,4 +68,71 @@ public class CircusController {
         circusRepository.save(new Circus(name, address, phone, user, urlPicture));
         return "redirect:/mes-cirques";
     }
+
+    @GetMapping("/modifier-cirque")
+    public String updateACircus(Model out, HttpSession session, @RequestParam Long circusId) {
+        if (session.getAttribute("userId") == null) {
+            return "redirect:/";
+        }
+        User user = userRepository.findById((long) session.getAttribute("userId")).get();
+        Circus circus = circusRepository.findById(circusId).get();
+
+        out.addAttribute("circus", circus);
+        out.addAttribute("user", user);
+        return "update-circus";
+    }
+
+    @PostMapping("/modifier-cirque")
+    public String updateACircusPost (@RequestParam String name,
+                                  @RequestParam String address,
+                                  @RequestParam int phone,
+                                  @RequestParam String urlPicture,
+                                  @RequestParam Long circusId,
+                                  HttpSession session) {
+        if (session.getAttribute("userId") == null) {
+            return "redirect:/";
+        }
+        Circus circus = circusRepository.findById(circusId).get();
+
+        circus.setName(name);
+        circus.setAdress(address);
+        circus.setPhone(phone);
+        circus.setUrlPicture(urlPicture);
+
+        circusRepository.save(circus);
+        return "redirect:/mes-cirques";
+    }
+
+    @GetMapping("/details-cirque")
+    public String showCircusDetails(Model out, @RequestParam Long circusId, HttpSession session) {
+        if (session.getAttribute("userId") == null) {
+            return "redirect:/";
+        }
+        Circus circus = circusRepository.findById(circusId).get();
+        boolean isUserId = false;
+        boolean toCancel = false;
+        if (session.getAttribute("userId") != null) {
+            isUserId = true;
+        }
+        for (Event event : circus.getEvents()) {
+            if (event != null) {
+                toCancel = true;
+            }
+        }
+
+        out.addAttribute("circus", circus);
+        out.addAttribute("user", isUserId);
+        out.addAttribute("toCancel", toCancel);
+        return "circus-details";
+    }
+
+    @GetMapping("/supprimer-cirque")
+    public String deleteCircus(HttpSession session, @RequestParam Long circusId) {
+        if (session.getAttribute("userId") == null) {
+            return "redirect:/";
+        }
+        Circus circus = circusRepository.findById(circusId).get();
+        circusRepository.delete(circus);
+        return "redirect:/mes-cirques";
+    }
 }
