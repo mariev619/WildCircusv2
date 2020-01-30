@@ -51,11 +51,13 @@
             <div class="column">
                 <input hidden th:value="${circus.id}" th:id="${circus.id}" name="circusId">
                 <div th:if="${toCancel}">
-                    <a th:href="@{/modifier-cirque(circusId=${circus.id})}" class="ui button orange">Modifier</a>
+                    <a th:href="@{/modifier-cirque(circusId=${circus.id})}" class="ui button orange">Modifier les informations</a>
+                    <a class="ui orange button" th:href="@{/ajout-show(circusId=${circus.id})}">Ajouter un show</a>
                 </div>
                 <div th:unless="${toCancel}">
-                    <a th:href="@{/modifier-cirque(circusId=${circus.id})}" class="ui button orange">Modifier</a>
-                    <a th:href="@{/supprimer-cirque(circusId=${circus.id})}" class="ui button red">Supprimer</a>
+                    <a th:href="@{/supprimer-cirque(circusId=${circus.id})}" class="ui button red">Supprimer le cirque</a>
+                    <a th:href="@{/modifier-cirque(circusId=${circus.id})}" class="ui button orange">Modifier les informations</a>
+                    <a class="ui orange button" th:href="@{/ajout-show(circusId=${circus.id})}">Ajouter un show</a>
                 </div>
             </div>
         </div>
