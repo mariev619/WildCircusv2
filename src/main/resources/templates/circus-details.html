@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta content="noindex, nofollow" name="robots">
+    <meta name="robots" content="noindex, nofollow">
     <meta charset="UTF-8">
     <title>WildCircus</title>
     <meta content="width=device-width, user-scalable=no" name="viewport">
@@ -16,9 +16,10 @@
         <div class="ui dropdown icon item">
             <i class="bars big icon"></i>
             <div class="menu">
-                <a class="item" th:href="@{mes-cirques}">Mes cirques</a>
-                <a class="item" th:href="@{mes-shows}">Mes shows</a>
-                <a class="item" th:href="@{/deconnexion}">Déconnexion</a>
+                <a class="item" th:href="@{/}">Accueil</a>
+                <a class="item" th:href="@{/cirques}">Les cirques</a>
+                <a class="item" th:href="@{/tous-shows}">Les shows</a>
+                <a class="item" th:href="@{/connexion}">Se connecter</a>
             </div>
         </div>
     </div>
@@ -34,33 +35,32 @@
     <div class="item">
     </div>
 </header>
-    <h2 class="ui header">Ajouter un cirque</h2>
-    <form class="ui form" method="post" th:action="@{/ajout-cirque}">
-    <div class="ui placeholder middle content aligned">
-        <div class="ui three column centered very relaxed stackable grid">
-            <div class="column relaxed">
-                <div class="field">
-                    <label>Nom du cirque : </label>
-                    <input name="name" placeholder="Nom" required type="text">
+<h2 class="ui header" th:text="${circus.getName()}">Circus name</h2>
+<div class="ui two column stackable grid container">
+    <div class="column">
+        <div class="ui centered image">
+            <img th:src="${circus.getUrlPicture()}">
+        </div>
+    </div>
+    <div class="column">
+        <div th:text="|Contact : ${circus.getPhone()}|">phone</div>
+        <div th:text="|Lieu : ${circus.getAdress()}|"></div>
+    </div>
+    <div th:if="${user}">
+        <div class="ui one column stackable grid container header center aligned">
+            <div class="column">
+                <input hidden th:value="${circus.id}" th:id="${circus.id}" name="circusId">
+                <div th:if="${toCancel}">
+                    <a th:href="@{/modifier-cirque(circusId=${circus.id})}" class="ui button orange">Modifier</a>
                 </div>
-                <div class="field">
-                    <label>Adresse du cirque : </label>
-                    <input name="address" placeholder="Adresse" required type="text">
+                <div th:unless="${toCancel}">
+                    <a th:href="@{/modifier-cirque(circusId=${circus.id})}" class="ui button orange">Modifier</a>
+                    <a th:href="@{/supprimer-cirque(circusId=${circus.id})}" class="ui button red">Supprimer</a>
                 </div>
-                <div class="field">
-                    <label>Téléphone du cirque : </label>
-                    <input name="phone" placeholder="0611111111" required type="number">
-                </div>
-                <div class="field">
-                    <label>Url de votre image : </label>
-                    <input name="urlPicture" placeholder="https://shot-cropped-1551658050417.png" type="text" required>
-                </div>
-                <input hidden name="userId" th:id="${user.id}" th:value="${user.id}">
-                <button class="ui orange button" type="submit">Ajouter</button>
             </div>
         </div>
     </div>
-</form>
+</div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://cdn.rawgit.com/mdehoog/Semantic-UI/6e6d051d47b598ebab05857545f242caf2b4b48c/dist/semantic.min.js"></script>
 <script>
