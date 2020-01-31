@@ -115,6 +115,7 @@ public class MainController {
         for (Event passedEvent : passedEvents) {
             if (passedEvent.getDate().before(new Date())) {
                 isPassed = true;
+                break;
             }
         }
 

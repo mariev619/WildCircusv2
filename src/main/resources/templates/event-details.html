@@ -61,7 +61,7 @@
         <div th:text="|Prix : ${event.getPrice()}€|"></div>
         <div th:text="|Contact : ${event.getCircus().getPhone()}|"></div>
     </div>
-    <div th:if="${user} and !${isPassed}">
+    <div th:if="${user}">
         <div class="ui one column stackable grid container header center aligned">
             <div class="column">
                 <a th:href="@{/supprimer-show(eventId=${event.id}, circusId=${event.circus.id})}" class="ui button red">Supprimer</a>
