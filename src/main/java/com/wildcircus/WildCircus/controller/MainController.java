@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 import java.nio.charset.StandardCharsets;
@@ -173,5 +174,12 @@ public class MainController {
         }
         userRepository.delete(user);
         return "redirect:/";
+    }
+
+    @GetMapping("/tous-cirques")
+    @ResponseBody
+    public Circus api(@RequestParam Long id) {
+
+        return circusRepository.findById(id).get();
     }
 }
