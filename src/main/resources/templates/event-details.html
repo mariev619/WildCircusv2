@@ -40,7 +40,10 @@
             </div>
         </div>
     </div>
-    <div class="item">
+    <div class="item" th:if="${user}">
+        <a th:href="@{/mon-profil}"><i class="ui big icon user"></i></a>
+    </div>
+    <div th:unless="${user}" class="item">
     </div>
 </header>
 <h2 class="ui header" th:text="${event.getTitle()}">Event name</h2>

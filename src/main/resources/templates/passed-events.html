@@ -39,10 +39,13 @@
             </div>
         </div>
     </div>
-    <div class="item">
+    <div th:if="${user}" class="item">
+        <a th:href="@{/mon-profil}"><i class="ui big icon user"></i></a>
+    </div>
+    <div th:unless="${user}" class="item">
     </div>
 </header>
-<h2 class="ui header">Tous les shows</h2>
+<h2 class="ui header">Tous les shows passés</h2>
 <div class="ui four column doubling stackable grid container">
     <div class="column" th:each="event : ${events}">
         <div class="ui card">

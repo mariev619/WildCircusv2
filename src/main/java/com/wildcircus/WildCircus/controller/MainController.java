@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
@@ -114,5 +115,52 @@ public class MainController {
         out.addAttribute("event", event);
         out.addAttribute("isPassed", isPassed);
         return "event-details";
+    }
+
+    @GetMapping("/mon-profil")
+    public String userProfil(Model out, HttpSession session) {
+        if (session.getAttribute("userId") == null) {
+            return "/visit";
+        }
+        User user = userRepository.findById((Long) session.getAttribute("userId")).get();
+
+        out.addAttribute("user", user);
+        return "user-profil";
+    }
+
+    @GetMapping("/modifier-profil")
+    public String updateUser(Model out, HttpSession session, @RequestParam Long userId) {
+        if (session.getAttribute("userId") != null) {
+            return "/visit";
+        }
+        User user = userRepository.findById((Long) session.getAttribute("userId")).get();
+
+        out.addAttribute("user", user);
+        return "update-user";
+    }
+
+    @PostMapping("/modifier-profil")
+    public String updateUserPost(@RequestParam String name,
+                                 @RequestParam String firstname,
+                                 @RequestParam String email,
+                                 @RequestParam String password,
+                                 @RequestParam Long userId,
+                                 HttpSession session) {
+        User user = userRepository.findById((Long) session.getAttribute("userId")).get();
+        user.setName(name);
+        user.setFirstname(firstname);
+        user.setEmail(email);
+        user.setPassword(password);
+
+        userRepository.save(user);
+        return "redirect:/mon-profil";
+    }
+
+    @GetMapping("/supprimer-profil")
+    public String deleteProfil(HttpSession session) {
+        User user = userRepository.findById((Long) session.getAttribute("userId")).get();
+
+        userRepository.delete(user);
+        return "redirect:/";
     }
 }

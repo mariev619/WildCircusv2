@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta name="robots" content="noindex, nofollow">
+    <meta content="noindex, nofollow" name="robots">
     <meta charset="UTF-8">
     <title>WildCircus</title>
     <meta content="width=device-width, user-scalable=no" name="viewport">
@@ -36,22 +36,17 @@
         <a th:href="@{/mon-profil}"><i class="ui big icon user"></i></a>
     </div>
 </header>
-<h2 class="ui header">Mes Shows</h2>
-<div class="ui four column doubling stackable grid container">
-    <div class="column" th:each="event : ${events}">
-        <div class="ui card">
-            <div class="image">
-                <img th:src="${event.getUrlPicture()}">
-            </div>
-            <div class="content">
-                <a class="header" th:text="${event.getTitle()}">Name</a>
-                <div class="description" th:text="${event.getFormattedDate()}">Date</div>
-                <div th:text="${event.getCircus().getName()}"></div>
-                <div th:text="${event.getCircus().getAdress()}"></div>
-            </div>
-            <div class="extra content">
-                <a class="ui button orange" th:href="@{/details-show(eventId=${event.id})}">Voir les détails</a>
-            </div>
+<h2 class="ui header" th:text="|${user.name} ${user.firstname}|">Modifier un cirque</h2>
+<div class="ui placeholder middle content aligned">
+    <div class="ui three column centered very relaxed stackable grid">
+        <div class="column relaxed">
+            <div th:text="|Nom : ${user.name}|"></div>
+            <div th:text="|Prénom : ${user.firstname}|"></div>
+            <div th:text="|Email : ${user.email}|"></div>
+            <br>
+            <input hidden th:id="userId" th:value="userId" name="userId">
+            <a class="ui red button" th:href="@{/supprimer-profil(userId=${user.id})}">Supprimer mon profil</a>
+            <a class="ui orange button" th:href="@{/modifier-profil(userId=${user.id})}">Modifier mes informations</a>
         </div>
     </div>
 </div>

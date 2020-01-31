@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta name="robots" content="noindex, nofollow">
+    <meta content="noindex, nofollow" name="robots">
     <meta charset="UTF-8">
     <title>WildCircus</title>
     <meta content="width=device-width, user-scalable=no" name="viewport">
@@ -36,25 +36,33 @@
         <a th:href="@{/mon-profil}"><i class="ui big icon user"></i></a>
     </div>
 </header>
-<h2 class="ui header">Mes Shows</h2>
-<div class="ui four column doubling stackable grid container">
-    <div class="column" th:each="event : ${events}">
-        <div class="ui card">
-            <div class="image">
-                <img th:src="${event.getUrlPicture()}">
-            </div>
-            <div class="content">
-                <a class="header" th:text="${event.getTitle()}">Name</a>
-                <div class="description" th:text="${event.getFormattedDate()}">Date</div>
-                <div th:text="${event.getCircus().getName()}"></div>
-                <div th:text="${event.getCircus().getAdress()}"></div>
-            </div>
-            <div class="extra content">
-                <a class="ui button orange" th:href="@{/details-show(eventId=${event.id})}">Voir les détails</a>
+<h2 class="ui header" th:text="|Modifier ${user.name}|">Modifier un cirque</h2>
+<form class="ui form" method="post" th:action="@{/modifier-profil}">
+    <div class="ui placeholder middle content aligned">
+        <div class="ui three column centered very relaxed stackable grid">
+            <div class="column relaxed">
+                <div class="field">
+                    <label>Nom : </label>
+                    <input name="name" placeholder="Nom" required type="text">
+                </div>
+                <div class="field">
+                    <label>Prénom : </label>
+                    <input name="firstname" placeholder="Prénom" required type="text">
+                </div>
+                <div class="field">
+                    <label>Email : </label>
+                    <input name="email" placeholder="marie@gmail.com" required type="email">
+                </div>
+                <div class="field">
+                    <label>Mot de passe : </label>
+                    <input name="password" placeholder="*****" required type="password">
+                </div>
+                <input hidden name="userId" th:id="${user.id}" th:value="${user.id}">
+                <button class="ui orange button" type="submit">Modifier</button>
             </div>
         </div>
     </div>
-</div>
+</form>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://cdn.rawgit.com/mdehoog/Semantic-UI/6e6d051d47b598ebab05857545f242caf2b4b48c/dist/semantic.min.js"></script>
 <script>
