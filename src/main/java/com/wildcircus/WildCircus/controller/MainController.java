@@ -31,12 +31,19 @@ public class MainController {
 
     @GetMapping("/")
     public String index(HttpSession session, Model out) {
-
         boolean isUser = false;
         if (session.getAttribute("userId") != null) {
             isUser = true;
         }
+        List<Circus> circusList = new ArrayList<>();
+        List<Circus> circuses = circusRepository.findAll();
+        for (Circus circus : circuses) {
+            if (circus.getEvents() != null) {
+                circusList.add(circus);
+            }
+        }
 
+        out.addAttribute("circus", circusList);
         out.addAttribute("user", isUser);
         return "visit";
     }
