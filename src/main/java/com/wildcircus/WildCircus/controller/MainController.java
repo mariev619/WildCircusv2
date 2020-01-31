@@ -168,7 +168,9 @@ public class MainController {
     @GetMapping("/supprimer-profil")
     public String deleteProfil(HttpSession session) {
         User user = userRepository.findById((Long) session.getAttribute("userId")).get();
-
+        if (session.getAttribute("userId") == null) {
+            return "redirect:/";
+        }
         userRepository.delete(user);
         return "redirect:/";
     }

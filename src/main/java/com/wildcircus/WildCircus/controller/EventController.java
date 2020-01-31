@@ -43,7 +43,9 @@ public class EventController {
 
         for (Circus circus : circuses) {
             for (Event event : circus.getEvents()) {
-                events.add(event);
+                if (!event.getDate().before(new Date())) {
+                    events.add(event);
+                }
             }
         }
 
