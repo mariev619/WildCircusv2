@@ -19,11 +19,13 @@
                 <a class="item" th:href="@{/}">Accueil</a>
                 <a class="item" th:href="@{/cirques}">Les cirques</a>
                 <a class="item" th:href="@{/tous-shows}">Les shows</a>
+                <a class="item" th:href="@{/shows-passes}">Les shows passés</a>
                 <a class="item" th:href="@{/connexion}">Se connecter</a>
             </div>
             <div class="menu" th:if="${user}">
                 <a class="item" th:href="@{mes-cirques}">Mes cirques</a>
                 <a class="item" th:href="@{mes-shows}">Mes shows</a>
+                <a class="item" th:href="@{/shows-passes}">Les shows passés</a>
                 <a class="item" th:href="@{/deconnexion}">Déconnexion</a>
             </div>
             </div>
@@ -56,7 +58,7 @@
         <div th:text="|Prix : ${event.getPrice()}€|"></div>
         <div th:text="|Contact : ${event.getCircus().getPhone()}|"></div>
     </div>
-    <div th:if="${user}">
+    <div th:if="${user} and !${isPassed}">
         <div class="ui one column stackable grid container header center aligned">
             <div class="column">
                 <a th:href="@{/modifier-show(eventId=${event.id}, circusId=${event.circus.id})}" class="ui button orange">Modifier</a>

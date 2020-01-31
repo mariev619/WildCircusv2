@@ -132,4 +132,23 @@ public class EventController {
         eventRepository.deleteById(eventId);
         return "redirect:/mes-shows";
     }
+
+    @GetMapping("/shows-passes")
+    public String passedEvents(Model out, HttpSession session) {
+
+        boolean isUserId = false;
+        if (session.getAttribute("userId") != null) {
+            isUserId = true;
+        }
+
+        List<Event> events = new ArrayList<>();
+        for (Event event : eventRepository.findAll()) {
+            if (event.getDate().before(new Date())) {
+                events.add(event);
+            }
+        }
+        out.addAttribute("events", events);
+        out.addAttribute("user", isUserId);
+        return "passed-events";
+    }
 }

@@ -1,10 +1,71 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta name="robots" content="noindex, nofollow">
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>WildCircus</title>
+    <meta content="width=device-width, user-scalable=no" name="viewport">
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.9/semantic.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <!--    <link rel="icon" th:href="@{/img/x-logo-small.png}" />-->
 </head>
 <body>
-
+<header class="ui top attached three item menu">
+    <div class="item">
+        <div class="ui dropdown icon item">
+            <i class="bars big icon"></i>
+            <div class="menu" th:unless="${user}">
+                <a class="item" th:href="@{/}">Accueil</a>
+                <a class="item" th:href="@{/cirques}">Les cirques</a>
+                <a class="item" th:href="@{/tous-shows}">Les shows</a>
+                <a class="item" th:href="@{/shows-passes}">Les shows passés</a>
+                <a class="item" th:href="@{/connexion}">Se connecter</a>
+            </div>
+            <div class="menu" th:if="${user}">
+                <a class="item" th:href="@{mes-cirques}">Mes cirques</a>
+                <a class="item" th:href="@{mes-shows}">Mes shows</a>
+                <a class="item" th:href="@{/shows-passes}">Les shows passés</a>
+                <a class="item" th:href="@{/deconnexion}">Déconnexion</a>
+            </div>
+        </div>
+    </div>
+    <div class="item">
+        <div class="ui menu vertical segment">
+            <div class="ui center aligned container">
+                <div class="ui horizontal small divided link list">
+                    <a class="logo" th:href="@{/}">Wild<br>Circus</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="item">
+    </div>
+</header>
+<h2 class="ui header">Tous les shows</h2>
+<div class="ui four column doubling stackable grid container">
+    <div class="column" th:each="event : ${events}">
+        <div class="ui card">
+            <div class="image">
+                <img th:src="${event.getUrlPicture()}">
+            </div>
+            <div class="content">
+                <div class="header" th:text="${event.getTitle()}">Name</div>
+                <div class="description" th:text="${event.getFormattedDate()}">Date</div>
+                <div th:text="${event.getCircus().getName()}"></div>
+                <div th:text="${event.getCircus().getAdress()}"></div>
+            </div>
+            <div class="extra content">
+                <a class="ui button orange" th:href="@{/details-show(eventId=${event.id})}">Voir les détails</a>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://cdn.rawgit.com/mdehoog/Semantic-UI/6e6d051d47b598ebab05857545f242caf2b4b48c/dist/semantic.min.js"></script>
+<script>
+    $('.ui.dropdown').dropdown();
+</script>
 </body>
 </html>
