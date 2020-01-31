@@ -30,8 +30,14 @@ public class MainController {
     private UserRepository userRepository;
 
     @GetMapping("/")
-    public String index() {
+    public String index(HttpSession session, Model out) {
 
+        boolean isUser = false;
+        if (session.getAttribute("userId") != null) {
+            isUser = true;
+        }
+
+        out.addAttribute("user", isUser);
         return "visit";
     }
 
