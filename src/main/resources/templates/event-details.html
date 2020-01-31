@@ -61,8 +61,8 @@
     <div th:if="${user} and !${isPassed}">
         <div class="ui one column stackable grid container header center aligned">
             <div class="column">
-                <a th:href="@{/modifier-show(eventId=${event.id}, circusId=${event.circus.id})}" class="ui button orange">Modifier</a>
                 <a th:href="@{/supprimer-show(eventId=${event.id}, circusId=${event.circus.id})}" class="ui button red">Supprimer</a>
+                <a th:href="@{/modifier-show(eventId=${event.id}, circusId=${event.circus.id})}" class="ui button orange">Modifier</a>
             </div>
         </div>
     </div>

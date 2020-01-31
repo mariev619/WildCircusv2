@@ -110,19 +110,12 @@ public class CircusController {
         }
         Circus circus = circusRepository.findById(circusId).get();
         boolean isUserId = false;
-        boolean toCancel = false;
         if (session.getAttribute("userId") != null) {
             isUserId = true;
-        }
-        for (Event event : circus.getEvents()) {
-            if (event != null) {
-                toCancel = true;
-            }
         }
 
         out.addAttribute("circus", circus);
         out.addAttribute("user", isUserId);
-        out.addAttribute("toCancel", toCancel);
         return "circus-details";
     }
 

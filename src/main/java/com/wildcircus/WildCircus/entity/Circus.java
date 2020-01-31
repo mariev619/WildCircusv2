@@ -2,6 +2,7 @@ package com.wildcircus.WildCircus.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -20,7 +21,7 @@ public class Circus {
     @Column(name = "url_picture")
     private String urlPicture;
 
-    @OneToMany(mappedBy = "circus")
+    @OneToMany(mappedBy = "circus", cascade = CascadeType.ALL)
     private List<Event> events;
 
     @ManyToOne
