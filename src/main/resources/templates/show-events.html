@@ -15,12 +15,18 @@
     <div class="item">
         <div class="ui dropdown icon item">
             <i class="bars big icon"></i>
-            <div class="menu">
+            <div class="menu" th:unless="${user}">
                 <a class="item" th:href="@{/}">Accueil</a>
                 <a class="item" th:href="@{/cirques}">Les cirques</a>
                 <a class="item" th:href="@{/tous-shows}">Les shows</a>
                 <a class="item" th:href="@{/connexion}">Se connecter</a>
             </div>
+            <div class="menu" th:if="${user}">
+                <a class="item" th:href="@{mes-cirques}">Mes cirques</a>
+                <a class="item" th:href="@{mes-shows}">Mes shows</a>
+                <a class="item" th:href="@{/deconnexion}">Déconnexion</a>
+            </div>
+        </div>
         </div>
     </div>
     <div class="item">

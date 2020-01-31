@@ -47,6 +47,7 @@ public class EventController {
             }
         }
 
+        out.addAttribute("circuses", circuses);
         out.addAttribute("events", events);
         return "my-events";
     }
