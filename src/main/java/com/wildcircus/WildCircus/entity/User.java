@@ -25,7 +25,7 @@ public class User {
     @Email
     private String email;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Circus> circus;
 
     public User() {

@@ -1,5 +1,6 @@
 package com.wildcircus.WildCircus.controller;
 
+import com.google.common.hash.Hashing;
 import com.wildcircus.WildCircus.entity.Circus;
 import com.wildcircus.WildCircus.entity.Event;
 import com.wildcircus.WildCircus.entity.User;
@@ -7,6 +8,7 @@ import com.wildcircus.WildCircus.repository.CircusRepository;
 import com.wildcircus.WildCircus.repository.EventRepository;
 import com.wildcircus.WildCircus.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -29,6 +32,9 @@ public class MainController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Value("${password.salted}")
+    private String pass;
 
     @GetMapping("/")
     public String index(HttpSession session, Model out) {
@@ -130,7 +136,7 @@ public class MainController {
 
     @GetMapping("/modifier-profil")
     public String updateUser(Model out, HttpSession session, @RequestParam Long userId) {
-        if (session.getAttribute("userId") != null) {
+        if (session.getAttribute("userId") == null) {
             return "/visit";
         }
         User user = userRepository.findById((Long) session.getAttribute("userId")).get();
@@ -150,7 +156,10 @@ public class MainController {
         user.setName(name);
         user.setFirstname(firstname);
         user.setEmail(email);
-        user.setPassword(password);
+        String encryptedPassword = Hashing.sha256()
+                .hashString(pass + password, StandardCharsets.UTF_8)
+                .toString();
+        user.setPassword(encryptedPassword);
 
         userRepository.save(user);
         return "redirect:/mon-profil";
