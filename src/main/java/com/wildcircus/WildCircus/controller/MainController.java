@@ -90,14 +90,22 @@ public class MainController {
     @GetMapping("/details-show")
     public String showDetailsEvent(Model out, @RequestParam Long eventId, HttpSession session) {
 
-        Event event = eventRepository.findById(eventId).get();
         boolean isUser = false;
+        boolean isPassed = false;
         if (session.getAttribute("userId") != null) {
             isUser = true;
+        }
+        Event event = eventRepository.findById(eventId).get();
+        List<Event> passedEvents = eventRepository.findAll();
+        for (Event passedEvent : passedEvents) {
+            if (passedEvent.getDate().before(new Date())) {
+                isPassed = true;
+            }
         }
 
         out.addAttribute("user", isUser);
         out.addAttribute("event", event);
+        out.addAttribute("isPassed", isPassed);
         return "event-details";
     }
 }

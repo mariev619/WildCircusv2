@@ -28,7 +28,6 @@
                 <a class="item" th:href="@{/shows-passes}">Les shows passés</a>
                 <a class="item" th:href="@{/deconnexion}">Déconnexion</a>
             </div>
-            </div>
         </div>
     </div>
     <div class="item">
@@ -43,29 +42,25 @@
     <div class="item">
     </div>
 </header>
-<h2 class="ui header" th:text="${event.getTitle()}">Event name</h2>
-<div class="ui two column stackable grid container">
-    <div class="column">
-        <div class="ui centered image">
-            <img th:src="${event.getUrlPicture()}">
-        </div>
-    </div>
-    <div class="column">
-        <div th:text="${event.getFormattedDate()}">Date</div>
-        <div th:text="${event.getComment()}"></div>
-        <div th:text="|Nom du cirque : ${event.getCircus().getName()}|"></div>
-        <div th:text="|Adresse : ${event.getCircus().getAdress()}|"></div>
-        <div th:text="|Prix : ${event.getPrice()}€|"></div>
-        <div th:text="|Contact : ${event.getCircus().getPhone()}|"></div>
-    </div>
-    <div th:if="${user} and !${isPassed}">
-        <div class="ui one column stackable grid container header center aligned">
-            <div class="column">
-                <a th:href="@{/modifier-show(eventId=${event.id}, circusId=${event.circus.id})}" class="ui button orange">Modifier</a>
-                <a th:href="@{/supprimer-show(eventId=${event.id}, circusId=${event.circus.id})}" class="ui button red">Supprimer</a>
+<h2 class="ui header">Tous les shows</h2>
+<div class="ui four column doubling stackable grid container">
+    <div class="column" th:each="event : ${events}">
+        <div class="ui card">
+            <div class="image">
+                <img th:src="${event.getUrlPicture()}">
+            </div>
+            <div class="content">
+                <div class="header" th:text="${event.getTitle()}">Name</div>
+                <div class="description" th:text="${event.getFormattedDate()}">Date</div>
+                <div th:text="${event.getCircus().getName()}"></div>
+                <div th:text="${event.getCircus().getAdress()}"></div>
+            </div>
+            <div class="extra content">
+                <a class="ui button orange" th:href="@{/details-show(eventId=${event.id})}">Voir les détails</a>
             </div>
         </div>
     </div>
+</div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://cdn.rawgit.com/mdehoog/Semantic-UI/6e6d051d47b598ebab05857545f242caf2b4b48c/dist/semantic.min.js"></script>
