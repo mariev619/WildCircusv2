@@ -52,6 +52,7 @@
                 <div th:if="${toCancel}">
                     <a th:href="@{/modifier-cirque(circusId=${circus.id})}" class="ui button orange">Modifier les informations</a>
                     <a class="ui orange button" th:href="@{/ajout-show(circusId=${circus.id})}">Ajouter un show</a>
+                    <a class="ui orange button" th:href="@{/shows(circusId=${circus.id})}">Voir les shows</a>
                 </div>
                 <div th:unless="${toCancel}">
                     <a th:href="@{/supprimer-cirque(circusId=${circus.id})}" class="ui button red">Supprimer le cirque</a>

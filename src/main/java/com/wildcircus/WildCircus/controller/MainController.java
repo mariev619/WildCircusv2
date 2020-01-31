@@ -45,8 +45,9 @@ public class MainController {
     }
 
     @GetMapping("/shows")
-    public String showEventsByCircus(Model out, @RequestParam Long circusId) {
+    public String showEventsByCircus(Model out, @RequestParam Long circusId, HttpSession session) {
 
+        boolean isUser = false;
         List<Event> events = new ArrayList<>();
         List<Circus> circuses = circusRepository.findAll();
         List<List<Event>> eventsList = new ArrayList<>();
@@ -62,7 +63,11 @@ public class MainController {
                 }
             }
         }
+        if (session.getAttribute("userId") != null) {
+            isUser = true;
+        }
 
+        out.addAttribute("user", isUser);
         out.addAttribute("events", events);
         return "show-events";
     }
